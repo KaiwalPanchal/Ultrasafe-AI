@@ -1,0 +1,41 @@
+TOPIC: Cybersecurity Basics
+FORMAT: Twitter Thread
+STYLE: Casual Conversational
+COMPLEXITY: Knows a Little
+SOURCE TOPIC: organized_content\technology_ai\cybersecurity_basics.txt
+SOURCE STYLE GUIDE: style_guides\twitter_thread_casual_conversational_knows_a_little.txt
+================================================================================
+
+1/10  
+Ever wondered what cybersecurity actually means and why it’s such a big deal? Let’s dive in and break down the basics so you can stay safe online without the tech headache 👇  
+
+2/10  
+Cybersecurity is all about protecting your devices, data, and networks from hackers and other digital bad guys. It keeps your info private, accurate, and available when you need it — kinda like a digital security guard.  
+
+3/10  
+Here’s a crazy stat: cybercrime damages worldwide could hit $10.5 trillion in 2025! That’s up from $3 trillion in 2015. Plus, in 2023, data breaches happened every 8 seconds. Yup, hackers don’t take breaks.  
+
+4/10  
+Phishing scams? They cause over 80% of reported security incidents. Basically, phishing tricks you into giving away sensitive info by pretending to be someone you trust — usually via email or messages. Sneaky!  
+
+5/10  
+Quick heads up: since remote work ramped up, security incidents on home networks jumped 30% in companies. So, that cozy home Wi-Fi could be a weak link if you’re not careful.  
+
+6/10  
+Confused by cyber lingo? Here’s a quick rundown:  
+- Confidentiality: Keep info private  
+- Integrity: Keep info accurate  
+- Availability: Info is there when needed  
+Plus, watch out for malware (bad software), phishing, and weak passwords like “123456” (still the most popular!).  
+
+7/10  
+So, how do you actually protect yourself? Start with multi-factor authentication (MFA) — that’s when you need more than just a password, like a code sent to your phone. Banks and social apps use this a lot now.  
+
+8/10  
+Don’t forget updates! WannaCry ransomware hurt over 200,000 computers because folks skipped patches. Keep your apps and OS updated to close security holes hackers love to exploit.  
+
+9/10  
+And yeah, antivirus stuff helps but isn’t enough alone. Cyber pros say layered security is key — think firewalls, encryption, user smarts, and backups. Plus, always be skeptical of weird emails or links!  
+
+10/10  
+Here’s your takeaway: Use strong, unique passwords (try password managers), enable MFA, update regularly, secure your Wi-Fi, back up your data, and keep learning about new tricks crooks use. Got questions? Hit me up! #Cybersecurity101 🔒🔑

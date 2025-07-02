@@ -1,0 +1,126 @@
+# Style Guide Index
+
+Total Combinations: 120
+
+## All Combinations:
+
+- **Blog Post** | **Gen Z** | **Newbie** → `blog_post_gen_z_newbie.txt`
+- **Blog Post** | **Gen Z** | **Knows a Little** → `blog_post_gen_z_knows_a_little.txt`
+- **Blog Post** | **Gen Z** | **Expert** → `blog_post_gen_z_expert.txt`
+- **Blog Post** | **Millennial** | **Newbie** → `blog_post_millennial_newbie.txt`
+- **Blog Post** | **Millennial** | **Knows a Little** → `blog_post_millennial_knows_a_little.txt`
+- **Blog Post** | **Millennial** | **Expert** → `blog_post_millennial_expert.txt`
+- **Blog Post** | **Enthusiastic & Motivational** | **Newbie** → `blog_post_enthusiastic_and_motivational_newbie.txt`
+- **Blog Post** | **Enthusiastic & Motivational** | **Knows a Little** → `blog_post_enthusiastic_and_motivational_knows_a_little.txt`
+- **Blog Post** | **Enthusiastic & Motivational** | **Expert** → `blog_post_enthusiastic_and_motivational_expert.txt`
+- **Blog Post** | **Formal Professional** | **Newbie** → `blog_post_formal_professional_newbie.txt`
+- **Blog Post** | **Formal Professional** | **Knows a Little** → `blog_post_formal_professional_knows_a_little.txt`
+- **Blog Post** | **Formal Professional** | **Expert** → `blog_post_formal_professional_expert.txt`
+- **Blog Post** | **Casual Conversational** | **Newbie** → `blog_post_casual_conversational_newbie.txt`
+- **Blog Post** | **Casual Conversational** | **Knows a Little** → `blog_post_casual_conversational_knows_a_little.txt`
+- **Blog Post** | **Casual Conversational** | **Expert** → `blog_post_casual_conversational_expert.txt`
+- **Blog Post** | **Yoda (Star Wars)** | **Newbie** → `blog_post_yoda_star_wars_newbie.txt`
+- **Blog Post** | **Yoda (Star Wars)** | **Knows a Little** → `blog_post_yoda_star_wars_knows_a_little.txt`
+- **Blog Post** | **Yoda (Star Wars)** | **Expert** → `blog_post_yoda_star_wars_expert.txt`
+- **Blog Post** | **Sherlock Holmes** | **Newbie** → `blog_post_sherlock_holmes_newbie.txt`
+- **Blog Post** | **Sherlock Holmes** | **Knows a Little** → `blog_post_sherlock_holmes_knows_a_little.txt`
+- **Blog Post** | **Sherlock Holmes** | **Expert** → `blog_post_sherlock_holmes_expert.txt`
+- **Blog Post** | **Tony Stark (Iron Man)** | **Newbie** → `blog_post_tony_stark_iron_man_newbie.txt`
+- **Blog Post** | **Tony Stark (Iron Man)** | **Knows a Little** → `blog_post_tony_stark_iron_man_knows_a_little.txt`
+- **Blog Post** | **Tony Stark (Iron Man)** | **Expert** → `blog_post_tony_stark_iron_man_expert.txt`
+- **LinkedIn Post** | **Gen Z** | **Newbie** → `linkedin_post_gen_z_newbie.txt`
+- **LinkedIn Post** | **Gen Z** | **Knows a Little** → `linkedin_post_gen_z_knows_a_little.txt`
+- **LinkedIn Post** | **Gen Z** | **Expert** → `linkedin_post_gen_z_expert.txt`
+- **LinkedIn Post** | **Millennial** | **Newbie** → `linkedin_post_millennial_newbie.txt`
+- **LinkedIn Post** | **Millennial** | **Knows a Little** → `linkedin_post_millennial_knows_a_little.txt`
+- **LinkedIn Post** | **Millennial** | **Expert** → `linkedin_post_millennial_expert.txt`
+- **LinkedIn Post** | **Enthusiastic & Motivational** | **Newbie** → `linkedin_post_enthusiastic_and_motivational_newbie.txt`
+- **LinkedIn Post** | **Enthusiastic & Motivational** | **Knows a Little** → `linkedin_post_enthusiastic_and_motivational_knows_a_little.txt`
+- **LinkedIn Post** | **Enthusiastic & Motivational** | **Expert** → `linkedin_post_enthusiastic_and_motivational_expert.txt`
+- **LinkedIn Post** | **Formal Professional** | **Newbie** → `linkedin_post_formal_professional_newbie.txt`
+- **LinkedIn Post** | **Formal Professional** | **Knows a Little** → `linkedin_post_formal_professional_knows_a_little.txt`
+- **LinkedIn Post** | **Formal Professional** | **Expert** → `linkedin_post_formal_professional_expert.txt`
+- **LinkedIn Post** | **Casual Conversational** | **Newbie** → `linkedin_post_casual_conversational_newbie.txt`
+- **LinkedIn Post** | **Casual Conversational** | **Knows a Little** → `linkedin_post_casual_conversational_knows_a_little.txt`
+- **LinkedIn Post** | **Casual Conversational** | **Expert** → `linkedin_post_casual_conversational_expert.txt`
+- **LinkedIn Post** | **Yoda (Star Wars)** | **Newbie** → `linkedin_post_yoda_star_wars_newbie.txt`
+- **LinkedIn Post** | **Yoda (Star Wars)** | **Knows a Little** → `linkedin_post_yoda_star_wars_knows_a_little.txt`
+- **LinkedIn Post** | **Yoda (Star Wars)** | **Expert** → `linkedin_post_yoda_star_wars_expert.txt`
+- **LinkedIn Post** | **Sherlock Holmes** | **Newbie** → `linkedin_post_sherlock_holmes_newbie.txt`
+- **LinkedIn Post** | **Sherlock Holmes** | **Knows a Little** → `linkedin_post_sherlock_holmes_knows_a_little.txt`
+- **LinkedIn Post** | **Sherlock Holmes** | **Expert** → `linkedin_post_sherlock_holmes_expert.txt`
+- **LinkedIn Post** | **Tony Stark (Iron Man)** | **Newbie** → `linkedin_post_tony_stark_iron_man_newbie.txt`
+- **LinkedIn Post** | **Tony Stark (Iron Man)** | **Knows a Little** → `linkedin_post_tony_stark_iron_man_knows_a_little.txt`
+- **LinkedIn Post** | **Tony Stark (Iron Man)** | **Expert** → `linkedin_post_tony_stark_iron_man_expert.txt`
+- **Twitter Thread** | **Gen Z** | **Newbie** → `twitter_thread_gen_z_newbie.txt`
+- **Twitter Thread** | **Gen Z** | **Knows a Little** → `twitter_thread_gen_z_knows_a_little.txt`
+- **Twitter Thread** | **Gen Z** | **Expert** → `twitter_thread_gen_z_expert.txt`
+- **Twitter Thread** | **Millennial** | **Newbie** → `twitter_thread_millennial_newbie.txt`
+- **Twitter Thread** | **Millennial** | **Knows a Little** → `twitter_thread_millennial_knows_a_little.txt`
+- **Twitter Thread** | **Millennial** | **Expert** → `twitter_thread_millennial_expert.txt`
+- **Twitter Thread** | **Enthusiastic & Motivational** | **Newbie** → `twitter_thread_enthusiastic_and_motivational_newbie.txt`
+- **Twitter Thread** | **Enthusiastic & Motivational** | **Knows a Little** → `twitter_thread_enthusiastic_and_motivational_knows_a_little.txt`
+- **Twitter Thread** | **Enthusiastic & Motivational** | **Expert** → `twitter_thread_enthusiastic_and_motivational_expert.txt`
+- **Twitter Thread** | **Formal Professional** | **Newbie** → `twitter_thread_formal_professional_newbie.txt`
+- **Twitter Thread** | **Formal Professional** | **Knows a Little** → `twitter_thread_formal_professional_knows_a_little.txt`
+- **Twitter Thread** | **Formal Professional** | **Expert** → `twitter_thread_formal_professional_expert.txt`
+- **Twitter Thread** | **Casual Conversational** | **Newbie** → `twitter_thread_casual_conversational_newbie.txt`
+- **Twitter Thread** | **Casual Conversational** | **Knows a Little** → `twitter_thread_casual_conversational_knows_a_little.txt`
+- **Twitter Thread** | **Casual Conversational** | **Expert** → `twitter_thread_casual_conversational_expert.txt`
+- **Twitter Thread** | **Yoda (Star Wars)** | **Newbie** → `twitter_thread_yoda_star_wars_newbie.txt`
+- **Twitter Thread** | **Yoda (Star Wars)** | **Knows a Little** → `twitter_thread_yoda_star_wars_knows_a_little.txt`
+- **Twitter Thread** | **Yoda (Star Wars)** | **Expert** → `twitter_thread_yoda_star_wars_expert.txt`
+- **Twitter Thread** | **Sherlock Holmes** | **Newbie** → `twitter_thread_sherlock_holmes_newbie.txt`
+- **Twitter Thread** | **Sherlock Holmes** | **Knows a Little** → `twitter_thread_sherlock_holmes_knows_a_little.txt`
+- **Twitter Thread** | **Sherlock Holmes** | **Expert** → `twitter_thread_sherlock_holmes_expert.txt`
+- **Twitter Thread** | **Tony Stark (Iron Man)** | **Newbie** → `twitter_thread_tony_stark_iron_man_newbie.txt`
+- **Twitter Thread** | **Tony Stark (Iron Man)** | **Knows a Little** → `twitter_thread_tony_stark_iron_man_knows_a_little.txt`
+- **Twitter Thread** | **Tony Stark (Iron Man)** | **Expert** → `twitter_thread_tony_stark_iron_man_expert.txt`
+- **Email Newsletter** | **Gen Z** | **Newbie** → `email_newsletter_gen_z_newbie.txt`
+- **Email Newsletter** | **Gen Z** | **Knows a Little** → `email_newsletter_gen_z_knows_a_little.txt`
+- **Email Newsletter** | **Gen Z** | **Expert** → `email_newsletter_gen_z_expert.txt`
+- **Email Newsletter** | **Millennial** | **Newbie** → `email_newsletter_millennial_newbie.txt`
+- **Email Newsletter** | **Millennial** | **Knows a Little** → `email_newsletter_millennial_knows_a_little.txt`
+- **Email Newsletter** | **Millennial** | **Expert** → `email_newsletter_millennial_expert.txt`
+- **Email Newsletter** | **Enthusiastic & Motivational** | **Newbie** → `email_newsletter_enthusiastic_and_motivational_newbie.txt`
+- **Email Newsletter** | **Enthusiastic & Motivational** | **Knows a Little** → `email_newsletter_enthusiastic_and_motivational_knows_a_little.txt`
+- **Email Newsletter** | **Enthusiastic & Motivational** | **Expert** → `email_newsletter_enthusiastic_and_motivational_expert.txt`
+- **Email Newsletter** | **Formal Professional** | **Newbie** → `email_newsletter_formal_professional_newbie.txt`
+- **Email Newsletter** | **Formal Professional** | **Knows a Little** → `email_newsletter_formal_professional_knows_a_little.txt`
+- **Email Newsletter** | **Formal Professional** | **Expert** → `email_newsletter_formal_professional_expert.txt`
+- **Email Newsletter** | **Casual Conversational** | **Newbie** → `email_newsletter_casual_conversational_newbie.txt`
+- **Email Newsletter** | **Casual Conversational** | **Knows a Little** → `email_newsletter_casual_conversational_knows_a_little.txt`
+- **Email Newsletter** | **Casual Conversational** | **Expert** → `email_newsletter_casual_conversational_expert.txt`
+- **Email Newsletter** | **Yoda (Star Wars)** | **Newbie** → `email_newsletter_yoda_star_wars_newbie.txt`
+- **Email Newsletter** | **Yoda (Star Wars)** | **Knows a Little** → `email_newsletter_yoda_star_wars_knows_a_little.txt`
+- **Email Newsletter** | **Yoda (Star Wars)** | **Expert** → `email_newsletter_yoda_star_wars_expert.txt`
+- **Email Newsletter** | **Sherlock Holmes** | **Newbie** → `email_newsletter_sherlock_holmes_newbie.txt`
+- **Email Newsletter** | **Sherlock Holmes** | **Knows a Little** → `email_newsletter_sherlock_holmes_knows_a_little.txt`
+- **Email Newsletter** | **Sherlock Holmes** | **Expert** → `email_newsletter_sherlock_holmes_expert.txt`
+- **Email Newsletter** | **Tony Stark (Iron Man)** | **Newbie** → `email_newsletter_tony_stark_iron_man_newbie.txt`
+- **Email Newsletter** | **Tony Stark (Iron Man)** | **Knows a Little** → `email_newsletter_tony_stark_iron_man_knows_a_little.txt`
+- **Email Newsletter** | **Tony Stark (Iron Man)** | **Expert** → `email_newsletter_tony_stark_iron_man_expert.txt`
+- **Podcast Script** | **Gen Z** | **Newbie** → `podcast_script_gen_z_newbie.txt`
+- **Podcast Script** | **Gen Z** | **Knows a Little** → `podcast_script_gen_z_knows_a_little.txt`
+- **Podcast Script** | **Gen Z** | **Expert** → `podcast_script_gen_z_expert.txt`
+- **Podcast Script** | **Millennial** | **Newbie** → `podcast_script_millennial_newbie.txt`
+- **Podcast Script** | **Millennial** | **Knows a Little** → `podcast_script_millennial_knows_a_little.txt`
+- **Podcast Script** | **Millennial** | **Expert** → `podcast_script_millennial_expert.txt`
+- **Podcast Script** | **Enthusiastic & Motivational** | **Newbie** → `podcast_script_enthusiastic_and_motivational_newbie.txt`
+- **Podcast Script** | **Enthusiastic & Motivational** | **Knows a Little** → `podcast_script_enthusiastic_and_motivational_knows_a_little.txt`
+- **Podcast Script** | **Enthusiastic & Motivational** | **Expert** → `podcast_script_enthusiastic_and_motivational_expert.txt`
+- **Podcast Script** | **Formal Professional** | **Newbie** → `podcast_script_formal_professional_newbie.txt`
+- **Podcast Script** | **Formal Professional** | **Knows a Little** → `podcast_script_formal_professional_knows_a_little.txt`
+- **Podcast Script** | **Formal Professional** | **Expert** → `podcast_script_formal_professional_expert.txt`
+- **Podcast Script** | **Casual Conversational** | **Newbie** → `podcast_script_casual_conversational_newbie.txt`
+- **Podcast Script** | **Casual Conversational** | **Knows a Little** → `podcast_script_casual_conversational_knows_a_little.txt`
+- **Podcast Script** | **Casual Conversational** | **Expert** → `podcast_script_casual_conversational_expert.txt`
+- **Podcast Script** | **Yoda (Star Wars)** | **Newbie** → `podcast_script_yoda_star_wars_newbie.txt`
+- **Podcast Script** | **Yoda (Star Wars)** | **Knows a Little** → `podcast_script_yoda_star_wars_knows_a_little.txt`
+- **Podcast Script** | **Yoda (Star Wars)** | **Expert** → `podcast_script_yoda_star_wars_expert.txt`
+- **Podcast Script** | **Sherlock Holmes** | **Newbie** → `podcast_script_sherlock_holmes_newbie.txt`
+- **Podcast Script** | **Sherlock Holmes** | **Knows a Little** → `podcast_script_sherlock_holmes_knows_a_little.txt`
+- **Podcast Script** | **Sherlock Holmes** | **Expert** → `podcast_script_sherlock_holmes_expert.txt`
+- **Podcast Script** | **Tony Stark (Iron Man)** | **Newbie** → `podcast_script_tony_stark_iron_man_newbie.txt`
+- **Podcast Script** | **Tony Stark (Iron Man)** | **Knows a Little** → `podcast_script_tony_stark_iron_man_knows_a_little.txt`
+- **Podcast Script** | **Tony Stark (Iron Man)** | **Expert** → `podcast_script_tony_stark_iron_man_expert.txt`

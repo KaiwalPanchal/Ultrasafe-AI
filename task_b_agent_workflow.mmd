@@ -1,0 +1,18 @@
+flowchart TD
+    A["User Input: Title or Content"] --> B["Style Analysis Agent\n(Analyze format, style, complexity)"]
+    B --> C["Transformation Planning Agent\n(Design conversion steps)"]
+    C --> D["Content Conversion Agent\n(Execute transformation using RAG context)"]
+    D --> E["Quality Control Agent\n(Validate output, compute metrics)"]
+    E --> F{"User Feedback?"}
+    F -- "Yes" --> B
+    F -- "No" --> G["Final Output\n(Transformed Content + Quality Metrics)"]
+    D -- "RAG Retrieval" --> R["RAG Knowledge Base\n(Style Guides & Examples)"]
+    C -- "Optionally uses" --> R
+    B -- "Optionally uses" --> R
+    style R fill:#e0eaff,stroke:#0074d9,stroke-width:2px
+    style B fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#ff9,stroke:#333,stroke-width:2px
+    style D fill:#9f9,stroke:#333,stroke-width:2px
+    style E fill:#fc9,stroke:#333,stroke-width:2px
+    style F fill:#fff,stroke:#333,stroke-width:2px
+    style G fill:#bdf,stroke:#333,stroke-width:2px 

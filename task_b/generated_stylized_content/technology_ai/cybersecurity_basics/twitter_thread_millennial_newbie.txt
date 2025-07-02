@@ -1,0 +1,38 @@
+TOPIC: Cybersecurity Basics
+FORMAT: Twitter Thread
+STYLE: Millennial
+COMPLEXITY: Newbie
+SOURCE TOPIC: organized_content\technology_ai\cybersecurity_basics.txt
+SOURCE STYLE GUIDE: style_guides\twitter_thread_millennial_newbie.txt
+================================================================================
+
+1/9  
+hey friends! ever wonder what *cybersecurity* really means and why it’s such a big deal? let’s break it down so you can surf the web safely without the stress. here’s the tea ☕ on protecting yourself online! #CybersecurityBasics
+
+2/9  
+cybersecurity = keeping your devices & data safe from hackers, viruses, and sneaky scams. it’s all about protecting your info so only you (and people you trust) can see it. sounds important? it is! every 8 secs there’s a global data breach (IBM, 2023). 2/9
+
+3/9  
+quick pro tip: strong passwords are your first shield! but guess what? “123456” is still the most common & *worst* password out there (NordPass, 2024). no sweat—password managers like LastPass make strong passwords a breeze! 3/9
+
+4/9  
+ever gotten a weird email asking for your details? that’s phishing—90% of hacking attempts use this trick (Verizon, 2024). don’t click sketchy links or attachments. spam filters & user smarts are your BFFs here! 4/9
+
+5/9  
+let’s talk security basics:  
+- confidentiality = only you & your trusted peeps see your info  
+- integrity = info stays accurate & unedited  
+- availability = info & systems work when you need them  
+simple, right? these are the main pillars for staying safe. 5/9
+
+6/9  
+real talk: antivirus alone won’t cut it. experts say layering security—like firewalls & multi-factor auth (MFA)—keeps you safer. MFA means logging in with 2+ steps, making it way harder for hackers to get in. 6/9
+
+7/9  
+did you know? remote work has upped cyber attacks on home Wi-Fi by 30% (Forbes, 2023). pro tip: update your router password and use WPA3 encryption. public Wi-Fi? avoid logging into important stuff there! 7/9
+
+8/9  
+big trends to watch: AI in security helps spot threats faster, while passwordless logins (think FaceID) are making life easier & safer. ransomware attacks are on the rise in 2024, so backups are your emergency plan! 8/9
+
+9/9  
+no sweat, you got this! keep your software updated, use MFA, be email-skeptical, backup your data, & learn more as you go. got questions or tips? drop ‘em below & let’s keep the cyber-baddies away together! 🚀 #StaySafeOnline 9/9
