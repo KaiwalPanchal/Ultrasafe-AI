@@ -215,20 +215,81 @@ This diagram shows how user input flows through each agent, how RAG is used for 
 
 # File Structure
 ```
-Task_A.py                # FastAPI NLP application
-Task_A_README.md         # Task A documentation
-README.md                # This file (combined)
-task_b/
-  ├── improved_content_system.py      # Main system with human verification
-  ├── demo_improved_system.py         # Demo of the improved system
-  ├── rag_knowledge_base.py           # RAG knowledge base
-  ├── data_models.py                  # Data models
-  ├── interactive_cli.py              # Interactive CLI interface
-  ├── test_system.py                  # Test suite
-  ├── requirements.txt                # Dependencies
-  ├── README.md                       # Task B documentation
-  └── SYSTEM_DOCUMENTATION.md         # Complete system documentation
+master_content/                  # Raw, factual master content (one .txt per topic)
+organized_content/               # Master content organized by category/topic
+  ├── business_finance/
+  ├── career_professional_development/
+  ├── education_learning/
+  ├── entertainment_culture/
+  ├── environment_sustainability/
+  ├── food_cooking/
+  ├── health_wellness/
+  ├── relationships_social/
+  ├── technology_ai/
+  └── travel_adventure/
+rag_faiss_index/                 # FAISS vector index for RAG knowledge base
+  ├── index.faiss
+  └── index.pkl
+style_guides/                    # All style guide .txt files (format/style/complexity)
+task_a/                          # FastAPI NLP pipeline (Task A)
+  ├── run_task_a.py              # Main FastAPI app entrypoint
+  ├── simple_test_task_a.py      # Simple test script
+  ├── requirements_task_a.txt    # Task A dependencies
+  ├── quick_test.py              # Quick test script
+  └── ...                        # Other Task A scripts
+  
+Task_A_README.md                 # Task A documentation
+
+task_b/                          # Content Transformation System (Task B)
+  ├── build_rag_index.py         # Build/update FAISS index
+  ├── content_transformation_system.py # Main transformation system
+  ├── data_models.py             # Data models
+  ├── generated_stylized_content/ # Stylized content output (by category/topic/variation)
+  ├── style_guides/              # (symlink or copy of root style_guides/ for Task B)
+  ├── README.md                  # Task B documentation
+  ├── SYSTEM_DOCUMENTATION.md    # Full system docs
+  └── ...                        # Other Task B scripts
+
+testing/                         # Test scripts and utilities
+  ├── entity_extraction.py
+  ├── master_content_generator.py
+  └── ...
+
+ULTRASAFE_AI_FULL_DOCUMENTATION.md # Full project documentation
+README.md                        # This file (combined)
 ```
+
+---
+
+## Requirements & Setup Changes
+
+- **Task A**: Install dependencies from `task a/requirements_task_a.txt`:
+  ```bash
+  pip install -r "task a/requirements_task_a.txt"
+  ```
+  Run the FastAPI app from the `task a` directory:
+  ```bash
+  cd "task a"
+  python run_task_a.py
+  ```
+  This script will check dependencies, verify your `.env` file, and start the FastAPI server (http://localhost:8000).
+
+- **Task B**: Install dependencies from `task_b/requirements.txt`:
+  ```bash
+  pip install -r task_b/requirements.txt
+  ```
+  Run the content transformation system from the `task_b` directory:
+  ```bash
+  cd task_b
+  python improved_content_system.py
+  ```
+  This will launch the interactive CLI for generating, verifying, and transforming content.
+
+- **.env**: Place your `.env` file in the project root as before.
+
+- **Content/Style Guides**: All master content, organized content, and style guides are now in their respective folders as shown above. The RAG index is built from these folders.
+
+- **Testing**: Use scripts in the `testing/` directory for utilities and test runs.
 
 ---
 

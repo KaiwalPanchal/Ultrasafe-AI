@@ -41,14 +41,14 @@ def check_dependencies():
             missing_packages.append(package)
     
     if missing_packages:
-        print("❌ Missing required packages:")
+        print("Missing required packages:")
         for package in missing_packages:
             print(f"   - {package}")
         print("\nInstall them with:")
         print(f"pip install {' '.join(missing_packages)}")
         return False
     
-    print("✅ All required packages are installed")
+    print("All required packages are installed.")
     return True
 
 def check_environment():
@@ -57,17 +57,17 @@ def check_environment():
     
     api_key = os.getenv("ULTRASAFE_API_KEY")
     if not api_key:
-        print("❌ ULTRASAFE_API_KEY environment variable is not set")
+        print("ULTRASAFE_API_KEY environment variable is not set.")
         print("\nPlease set it in your .env file or environment:")
         print("ULTRASAFE_API_KEY=your-api-key-here")
         return False
     
-    print("✅ ULTRASAFE_API_KEY is set")
+    print("ULTRASAFE_API_KEY is set.")
     return True
 
 def start_server():
     """Start the FastAPI server"""
-    print("\n🚀 Starting Task A FastAPI server...")
+    print("\nStarting Task A FastAPI server...")
     print("Server will be available at: http://localhost:8000")
     print("Press Ctrl+C to stop the server")
     print("-" * 50)
@@ -76,20 +76,20 @@ def start_server():
         # Start the server
         subprocess.run([
             sys.executable, "-m", "uvicorn", 
-            "Task_A:app", 
+            "task a.Task_A:app", 
             "--host", "0.0.0.0", 
             "--port", "8000", 
             "--reload"
         ])
     except KeyboardInterrupt:
-        print("\n\n🛑 Server stopped by user")
+        print("\nServer stopped by user.")
     except Exception as e:
-        print(f"\n❌ Failed to start server: {e}")
+        print(f"\nFailed to start server: {e}")
 
 def show_testing_instructions():
     """Show instructions for testing"""
     print("\n" + "=" * 60)
-    print("🧪 TESTING INSTRUCTIONS")
+    print("TESTING INSTRUCTIONS")
     print("=" * 60)
     
     print("\n1. Start the server (if not already running):")
@@ -104,8 +104,8 @@ def show_testing_instructions():
     print("   - Test endpoints using the interactive docs")
     
     print("\n4. Example API calls:")
-    print("   curl -X POST http://localhost:8000/classify \\")
-    print("     -H 'Content-Type: application/json' \\")
+    print("   curl -X POST http://localhost:8000/classify \" )
+    print("     -H 'Content-Type: application/json' \" )
     print("     -d '{\"texts\": [\"AI is amazing!\"]}'")
     
     print("\n5. Performance monitoring:")
@@ -116,7 +116,7 @@ def show_testing_instructions():
 
 def main():
     """Main function"""
-    print("🎯 Task A FastAPI Application Runner")
+    print("Task A FastAPI Application Runner")
     print("=" * 40)
     
     # Check dependencies

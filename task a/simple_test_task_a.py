@@ -13,7 +13,7 @@ Usage:
     python simple_test_task_a.py
 
 Make sure your Task A server is running:
-    uvicorn Task_A:app --reload
+    uvicorn task\ a.Task_A:app --reload
 """
 
 import requests
@@ -37,16 +37,16 @@ def test_endpoint(endpoint, data, expected_keys=None):
         response.raise_for_status()
         result = response.json()
         
-        print(f"  ✅ Success! Processed {result.get('total_processed', 'N/A')} texts")
+        print(f"  Success. Processed {result.get('total_processed', 'N/A')} texts.")
         
         if expected_keys:
             for key in expected_keys:
                 if key not in result:
-                    print(f"  ⚠️  Missing expected key: {key}")
+                    print(f"  Warning: Missing expected key: {key}")
         
         return result
     except Exception as e:
-        print(f"  ❌ Failed: {str(e)}")
+        print(f"  Failed: {str(e)}")
         return None
 
 def test_get_endpoint(endpoint, expected_keys=None):
@@ -57,21 +57,21 @@ def test_get_endpoint(endpoint, expected_keys=None):
         response.raise_for_status()
         result = response.json()
         
-        print(f"  ✅ Success!")
+        print(f"  Success.")
         
         if expected_keys:
             for key in expected_keys:
                 if key not in result:
-                    print(f"  ⚠️  Missing expected key: {key}")
+                    print(f"  Warning: Missing expected key: {key}")
         
         return result
     except Exception as e:
-        print(f"  ❌ Failed: {str(e)}")
+        print(f"  Failed: {str(e)}")
         return None
 
 def main():
     """Run all tests"""
-    print("🧪 Task A Simple Test Suite")
+    print("Task A Simple Test Suite")
     print("=" * 40)
     
     # Check if server is running
@@ -79,12 +79,12 @@ def main():
     try:
         health = test_get_endpoint("/health", ["status", "llm_model"])
         if not health:
-            print("❌ Server is not responding. Make sure it's running with:")
-            print("   uvicorn Task_A:app --reload")
+            print("Server is not responding. Make sure it's running with:")
+            print("   uvicorn task a.Task_A:app --reload")
             return False
-        print(f"✅ Server is healthy! Using model: {health.get('llm_model', 'unknown')}")
+        print(f"Server is healthy. Using model: {health.get('llm_model', 'unknown')}")
     except Exception as e:
-        print(f"❌ Cannot connect to server: {e}")
+        print(f"Cannot connect to server: {e}")
         return False
     
     print("\n" + "=" * 40)
@@ -166,15 +166,15 @@ def main():
     
     print(f"  First request: {first_duration:.3f}s")
     print(f"  Second request: {second_duration:.3f}s")
-    print(f"  Speedup: {first_duration/second_duration:.1f}x")
+    print(f"  Speedup: {first_duration/second_duration:.1f}x" if second_duration > 0 else "  Speedup: Instant cache hit")
     
     # Test cache clear
     print("Testing cache clear...")
     clear_result = requests.post(f"{BASE_URL}/cache/clear")
     if clear_result.status_code == 200:
-        print("  ✅ Cache cleared successfully")
+        print("  Cache cleared successfully.")
     else:
-        print("  ❌ Failed to clear cache")
+        print("  Failed to clear cache.")
     
     print("\n" + "=" * 40)
     print("Testing Performance Monitoring")
@@ -194,20 +194,20 @@ def main():
     try:
         docs_response = requests.get(f"{BASE_URL}/docs")
         if docs_response.status_code == 200:
-            print("✅ Swagger UI available at /docs")
+            print("Swagger UI available at /docs.")
         else:
-            print("❌ Swagger UI not available")
+            print("Swagger UI not available.")
     except Exception as e:
-        print(f"❌ Cannot access Swagger UI: {e}")
+        print(f"Cannot access Swagger UI: {e}")
     
     try:
         redoc_response = requests.get(f"{BASE_URL}/redoc")
         if redoc_response.status_code == 200:
-            print("✅ ReDoc available at /redoc")
+            print("ReDoc available at /redoc.")
         else:
-            print("❌ ReDoc not available")
+            print("ReDoc not available.")
     except Exception as e:
-        print(f"❌ Cannot access ReDoc: {e}")
+        print(f"Cannot access ReDoc: {e}")
     
     print("\n" + "=" * 40)
     print("Test Summary")
@@ -232,14 +232,14 @@ def main():
     print(f"Success rate: {(successful_tests/total_tests)*100:.1f}%")
     
     if successful_tests == total_tests:
-        print("\n🎉 ALL TESTS PASSED! Your Task A application is working correctly!")
+        print("\nAll tests passed. Your Task A application is working correctly.")
         print("\nYou can now:")
         print("  - Access the API at http://localhost:8000")
         print("  - View documentation at http://localhost:8000/docs")
         print("  - Monitor performance at http://localhost:8000/performance")
         return True
     else:
-        print(f"\n⚠️  {total_tests - successful_tests} tests failed.")
+        print(f"\n{total_tests - successful_tests} tests failed.")
         print("Check the error messages above and fix any issues.")
         return False
 
