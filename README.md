@@ -14,6 +14,8 @@ A unified platform featuring:
 - [Task A: FastAPI NLP Pipeline](#task-a-fastapi-nlp-pipeline)
   - [Key Features](#key-features)
   - [Quick Start](#quick-start)
+    - [Start the API Server](#start-the-api-server)
+  - [Testing Task A (Validate Installation)](#testing-task-a-validate-installation)
   - [API Endpoints](#api-endpoints)
     - [Request Body (All Endpoints)](#request-body-all-endpoints)
     - [Response](#response)
@@ -21,7 +23,6 @@ A unified platform featuring:
   - [Webhook Notification Example](#webhook-notification-example)
   - [Performance \& Scaling](#performance--scaling)
   - [Example Usage (Python)](#example-usage-python)
-  - [Testing Task A (Validate Installation)](#testing-task-a-validate-installation)
 - [Task B: Content Transformation System](#task-b-content-transformation-system)
   - [Key Features](#key-features-1)
   - [Quick Start](#quick-start-1)
@@ -34,6 +35,7 @@ A unified platform featuring:
   - [Quality Metrics](#quality-metrics)
   - [Multi-Agent Workflow Diagram](#multi-agent-workflow-diagram)
 - [File Structure](#file-structure)
+  - [Requirements \& Setup Changes](#requirements--setup-changes)
 
 ---
 
@@ -55,13 +57,6 @@ ULTRASAFE_API_BASE=https://api.us.inc/usf/v1/hiring/chat/completions
 - Replace `your-api-key-here` with your actual UltraSafe API key.
 - The `ULTRASAFE_API_BASE` is usually the default shown above, but you can change it if needed.
 
-Install `python-dotenv` and add this to the top of your main Python files to load variables automatically:
-```python
-from dotenv import load_dotenv
-load_dotenv()
-```
-
----
 
 # Task A: FastAPI NLP Pipeline
 
@@ -73,15 +68,9 @@ load_dotenv()
 
 ## Quick Start
 
-### Prerequisites
-```bash
-pip install -r "task a/requirements_task_a.txt"
-```
-
 ### Start the API Server
 ```bash
-cd "task a"
-python run_task_a.py
+uvicorn task_a.Task_A:app --reload
 ```
 This script will check dependencies, verify your `.env` file, and start the FastAPI server at http://localhost:8000.
 
