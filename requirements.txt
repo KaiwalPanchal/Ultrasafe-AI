@@ -1,0 +1,21 @@
+# Combined requirements for Task A (FastAPI NLP) and Task B (Content Transformation)
+
+# --- FastAPI & API Server (Task A) ---
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+httpx>=0.25.0
+pydantic>=2.0.0
+
+# --- LangChain & LLMs (shared/core) ---
+langchain>=0.1.0
+langchain-openai>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.1.0
+langgraph>=0.1.0
+openai>=1.0.0
+
+# --- RAG, Vector DB, and Content Transformation (Task B) ---
+faiss-cpu>=1.7.4
+
+# --- Shared Utilities ---
+python-dotenv>=1.0.0 
