@@ -133,24 +133,24 @@ GENERATED: {Path(__file__).name}
         with open(filepath, 'w', encoding='utf-8') as file:
             file.write(metadata + content)
         
-        print(f"✅ Saved master content: {filepath}")
+        print(f"Saved master content: {filepath}")
     
     def generate_all_master_content(self, md_file_path: str):
         """Generate master content for all topics"""
-        print("🚀 Starting Master Content Generation...")
+        print("Starting Master Content Generation...")
         
         # Parse topics
         topics = self.parse_topics_from_md(md_file_path)
-        print(f"📋 Found {len(topics)} topics to process")
+        print(f"Found {len(topics)} topics to process")
         
         # Generate content for each topic
         for i, topic in enumerate(topics, 1):
-            print(f"\n🎯 Processing {i}/{len(topics)}: {topic['title']}")
+            print(f"\nProcessing {i}/{len(topics)}: {topic['title']}")
             
             # Check if already exists
             filepath = self.master_content_dir / f"{topic['filename']}.txt"
             if filepath.exists():
-                print(f"⏭️  Skipping (already exists): {topic['title']}")
+                print(f"Skipping (already exists): {topic['title']}")
                 continue
             
             try:
@@ -161,16 +161,16 @@ GENERATED: {Path(__file__).name}
                 self.save_master_content(topic, content)
                 
             except Exception as e:
-                print(f"❌ Failed to process {topic['title']}: {str(e)}")
+                print(f"Failed to process {topic['title']}: {str(e)}")
                 continue
         
-        print(f"\n🎉 Master Content Generation Complete!")
-        print(f"📁 Content saved in: {self.master_content_dir}")
+        print(f"\nMaster Content Generation Complete!")
+        print(f"Content saved in: {self.master_content_dir}")
     
     def list_generated_content(self):
         """List all generated master content files"""
         files = list(self.master_content_dir.glob("*.txt"))
-        print(f"\n📚 Generated Master Content Files ({len(files)}):")
+        print(f"\nGenerated Master Content Files ({len(files)}):")
         for file in sorted(files):
             print(f"  - {file.name}")
         return files
@@ -183,7 +183,7 @@ def main():
     md_file_path = "example_topics_list.md"  # Update this path as needed
     
     if not Path(md_file_path).exists():
-        print(f"❌ Error: {md_file_path} not found!")
+        print(f"Error: {md_file_path} not found!")
         print("Please ensure the topics markdown file exists.")
         return
     
@@ -195,7 +195,7 @@ def main():
         generator.list_generated_content()
         
     except Exception as e:
-        print(f"❌ Error: {str(e)}")
+        print(f"Error: {str(e)}")
 
 if __name__ == "__main__":
     main()

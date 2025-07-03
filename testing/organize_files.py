@@ -24,7 +24,7 @@ def parse_topics_and_categories(md_file_path: str) -> dict[str, str]:
     if not Path(md_file_path).exists():
         raise FileNotFoundError(f"Markdown file not found at: {md_file_path}")
 
-    print(f"📖 Parsing categories and topics from {md_file_path}...")
+    print(f"Parsing categories and topics from {md_file_path}...")
 
     topic_to_category_map = {}
     current_category = None
@@ -52,7 +52,7 @@ def parse_topics_and_categories(md_file_path: str) -> dict[str, str]:
                     topic_filename_base = create_sanitized_name(topic_title)
                     topic_to_category_map[topic_filename_base] = current_category
 
-    print(f"✅ Parsed {len(topic_to_category_map)} topics into categories.")
+    print(f"Parsed {len(topic_to_category_map)} topics into categories.")
     return topic_to_category_map
 
 
@@ -60,7 +60,7 @@ def organize_files(source_dir: Path, dest_dir: Path, topic_map: dict[str, str]):
     """
     Organizes files from the source directory into categorized subdirectories in the destination.
     """
-    print("\n🚀 Starting file organization...")
+    print("\nStarting file organization...")
 
     # Ensure source directory exists
     if not source_dir.is_dir():
@@ -71,7 +71,7 @@ def organize_files(source_dir: Path, dest_dir: Path, topic_map: dict[str, str]):
 
     # Create the main destination directory
     dest_dir.mkdir(exist_ok=True)
-    print(f"📂 Destination folder: {dest_dir.resolve()}")
+    print(f"Destination folder: {dest_dir.resolve()}")
 
     moved_count = 0
     skipped_count = 0
@@ -102,11 +102,11 @@ def organize_files(source_dir: Path, dest_dir: Path, topic_map: dict[str, str]):
             moved_count += 1
         else:
             print(
-                f"  -> ⏭️  Skipping '{txt_file.name}' (no matching topic found in map)."
+                f"  -> Skipping '{txt_file.name}' (no matching topic found in map)."
             )
             skipped_count += 1
 
-    print("\n🎉 Organization Complete!")
+    print("\nOrganization Complete!")
     print(f"   - Files moved: {moved_count}")
     print(f"   - Files skipped: {skipped_count}")
 
@@ -125,10 +125,10 @@ def main():
         organize_files(source_directory, destination_directory, topic_map)
 
     except FileNotFoundError as e:
-        print(f"❌ ERROR: {e}")
+        print(f"ERROR: {e}")
         print("Please ensure the markdown file exists and has the correct name.")
     except Exception as e:
-        print(f"❌ An unexpected error occurred: {e}")
+        print(f"An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":

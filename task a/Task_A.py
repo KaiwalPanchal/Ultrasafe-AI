@@ -16,6 +16,8 @@ Features
 * Optional **webhook** notification: supply ``webhook_url`` in the request body and the
   service will immediately return 202‑style acknowledgment while a background task POSTs
   the results to your webhook when ready.
+* **Caching**: Results are cached to improve performance for repeated requests.
+* **Task Queuing**: Background task management for better resource utilization.
 * Easily extensible—swap chains or plug a LangGraph graph for more complex agent flows.
 * **Custom LLM endpoint**: works with *any* service exposing an OpenAI‑compatible
   chat‑completion route via ``base_url``—just set an environment variable.
@@ -23,7 +25,7 @@ Features
 Setup
 -----
 ```bash
-pip install fastapi uvicorn langchain-openai httpx langchain-core
+pip install fastapi uvicorn langchain-openai httpx langchain-core redis
 export ULTRASAFE_API_KEY="your-api-key"
 export ULTRASAFE_API_BASE="https://api.us.inc/usf/v1/hiring/chat/completions"
 uvicorn langchain_api:app --reload
@@ -36,9 +38,12 @@ from __future__ import annotations
 import os
 import asyncio
 import json
+import hashlib
+import time
 from typing import List, Union, Optional, Dict, Any
+from functools import lru_cache
 
-from fastapi import FastAPI, BackgroundTasks, HTTPException
+from fastapi import FastAPI, BackgroundTasks, HTTPException, Depends
 from pydantic import BaseModel, Field
 import httpx
 from dotenv import load_dotenv
@@ -46,6 +51,44 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+
+# ----------------------------------------------------------------------------
+# Caching and Performance Configuration
+# ----------------------------------------------------------------------------
+
+# Simple in-memory cache (for production, use Redis)
+class SimpleCache:
+    def __init__(self, max_size: int = 1000, ttl: int = 3600):
+        self.cache = {}
+        self.max_size = max_size
+        self.ttl = ttl  # Time to live in seconds
+    
+    def get(self, key: str) -> Optional[Any]:
+        if key in self.cache:
+            value, timestamp = self.cache[key]
+            if time.time() - timestamp < self.ttl:
+                return value
+            else:
+                del self.cache[key]
+        return None
+    
+    def set(self, key: str, value: Any) -> None:
+        if len(self.cache) >= self.max_size:
+            # Remove oldest entry
+            oldest_key = min(self.cache.keys(), key=lambda k: self.cache[k][1])
+            del self.cache[oldest_key]
+        self.cache[key] = (value, time.time())
+    
+    def clear(self) -> None:
+        self.cache.clear()
+
+# Global cache instance
+nlp_cache = SimpleCache(max_size=1000, ttl=3600)  # 1 hour TTL
+
+def generate_cache_key(text: str, operation: str) -> str:
+    """Generate a unique cache key for text and operation"""
+    content = f"{operation}:{text.strip().lower()}"
+    return hashlib.md5(content.encode()).hexdigest()
 
 # ----------------------------------------------------------------------------
 # LLM / Chain factory helpers
@@ -166,6 +209,7 @@ INSTRUCTIONS:
 3. Include the exact text span as it appears in the original text
 4. Output MUST be a valid JSON array where each element has 'entity' and 'type' keys
 5. If no entities are found, return an empty array []
+6. If you cannot format as JSON, return a simple list of entities separated by commas
 
 Text: {text}
 
@@ -240,29 +284,90 @@ class WebhookResponse(BaseModel):
 
 
 # ----------------------------------------------------------------------------
-# Async batch helpers
+# Task Queue and Async Processing
+# ----------------------------------------------------------------------------
+
+class TaskQueue:
+    """Simple in-memory task queue for background processing"""
+    
+    def __init__(self, max_concurrent: int = 5):
+        self.max_concurrent = max_concurrent
+        self.active_tasks = 0
+        self.pending_tasks = []
+        self.task_results = {}
+    
+    async def add_task(self, task_id: str, task_func, *args, **kwargs):
+        """Add a task to the queue"""
+        if self.active_tasks < self.max_concurrent:
+            # Execute immediately
+            self.active_tasks += 1
+            try:
+                result = await task_func(*args, **kwargs)
+                self.task_results[task_id] = {"status": "completed", "result": result}
+            except Exception as e:
+                self.task_results[task_id] = {"status": "failed", "error": str(e)}
+            finally:
+                self.active_tasks -= 1
+                # Process pending tasks
+                if self.pending_tasks:
+                    next_task = self.pending_tasks.pop(0)
+                    asyncio.create_task(self.add_task(*next_task))
+        else:
+            # Queue for later execution
+            self.pending_tasks.append((task_id, task_func, args, kwargs))
+    
+    def get_task_status(self, task_id: str) -> Optional[Dict[str, Any]]:
+        """Get the status of a task"""
+        return self.task_results.get(task_id)
+
+# Global task queue instance
+task_queue = TaskQueue(max_concurrent=5)
+
+# ----------------------------------------------------------------------------
+# Async batch helpers with caching
 # ----------------------------------------------------------------------------
 
 
-async def _run_chain_batch(chain, texts: List[str]) -> List[Any]:
-    """Execute a LangChain chain asynchronously for a list of texts using modern LCEL."""
+async def _run_chain_batch(chain, texts: List[str], operation: str = "default") -> List[Any]:
+    """Execute a LangChain chain asynchronously for a list of texts using modern LCEL with caching."""
     try:
-        # Use the modern LangChain batch method
-        results = await chain.abatch([{"text": text} for text in texts])
-
-        cleaned: List[Any] = []
-        for result in results:
-            result = result.strip() if isinstance(result, str) else str(result).strip()
-
-            # Try to parse JSON for NER results
-            if result.startswith("[") or result.startswith("{"):
-                try:
-                    result = json.loads(result)
-                except json.JSONDecodeError:
-                    pass  # Keep as string if not valid JSON
-            cleaned.append(result)
-
-        return cleaned
+        results = []
+        uncached_texts = []
+        uncached_indices = []
+        
+        # Check cache for each text
+        for i, text in enumerate(texts):
+            cache_key = generate_cache_key(text, operation)
+            cached_result = nlp_cache.get(cache_key)
+            if cached_result is not None:
+                results.append(cached_result)
+            else:
+                uncached_texts.append(text)
+                uncached_indices.append(i)
+                results.append(None)  # Placeholder
+        
+        # Process uncached texts
+        if uncached_texts:
+            chain_results = await chain.abatch([{"text": text} for text in uncached_texts])
+            
+            for i, (text, result) in enumerate(zip(uncached_texts, chain_results)):
+                result = result.strip() if isinstance(result, str) else str(result).strip()
+                
+                # Try to parse JSON for NER results
+                if result.startswith("[") or result.startswith("{"):
+                    try:
+                        result = json.loads(result)
+                    except json.JSONDecodeError:
+                        pass  # Keep as string if not valid JSON
+                
+                # Cache the result
+                cache_key = generate_cache_key(text, operation)
+                nlp_cache.set(cache_key, result)
+                
+                # Update results list
+                results[uncached_indices[i]] = result
+        
+        return results
     except Exception as e:
         raise HTTPException(
             status_code=500, detail=f"Chain processing failed: {str(e)}"
@@ -279,10 +384,10 @@ async def _notify_webhook(url: str, payload: Dict[str, Any]) -> None:
         print(f"Webhook notification failed: {exc}")
 
 
-async def _process_and_notify(chain, texts: List[str], webhook: str):
+async def _process_and_notify(chain, texts: List[str], webhook: str, operation: str = "default"):
     """Background task: run chain then notify webhook."""
     try:
-        results = await _run_chain_batch(chain, texts)
+        results = await _run_chain_batch(chain, texts, operation)
         await _notify_webhook(
             webhook,
             {
@@ -314,7 +419,7 @@ def _register_endpoint(path: str, chain, endpoint_name: str):
         # Webhook mode -------------------------------------------------------
         if request.webhook_url:
             background_tasks.add_task(
-                _process_and_notify, chain, texts, request.webhook_url
+                _process_and_notify, chain, texts, request.webhook_url, endpoint_name
             )
             return WebhookResponse(
                 status="accepted",
@@ -325,7 +430,7 @@ def _register_endpoint(path: str, chain, endpoint_name: str):
 
         # Immediate mode -----------------------------------------------------
         try:
-            results = await _run_chain_batch(chain, texts)
+            results = await _run_chain_batch(chain, texts, endpoint_name)
             return ProcessingResponse(results=results, total_processed=len(results))
         except Exception as exc:
             raise HTTPException(status_code=500, detail=str(exc))
@@ -349,18 +454,24 @@ _register_endpoint("/summarize", summary_chain, "text_summarization")
 async def root():
     return {
         "service": "LangChain NLP API (UltraSafe endpoint)",
-        "version": "2.0",
+        "version": "3.0",
         "endpoints": {
             "classification": "/classify",
             "sentiment_analysis": "/sentiment",
             "named_entity_recognition": "/extract",
             "text_summarization": "/summarize",
+            "performance_metrics": "/performance",
+            "cache_stats": "/cache/stats",
+            "clear_cache": "/cache/clear",
         },
         "features": [
             "Batch processing",
             "Asynchronous webhook notifications",
             "UltraSafe LLM endpoint support",
             "Modern LangChain LCEL",
+            "Result caching (1 hour TTL)",
+            "Task queuing system",
+            "Performance monitoring",
         ],
     }
 
@@ -380,6 +491,45 @@ async def health_check():
         }
     except Exception as e:
         raise HTTPException(status_code=503, detail=f"Service unhealthy: {str(e)}")
+
+
+@app.get("/performance")
+async def performance_metrics():
+    """Performance metrics endpoint for monitoring."""
+    return {
+        "cache": {
+            "size": len(nlp_cache.cache),
+            "max_size": nlp_cache.max_size,
+            "hit_rate": "N/A",  # Would need to track hits/misses
+        },
+        "task_queue": {
+            "active_tasks": task_queue.active_tasks,
+            "pending_tasks": len(task_queue.pending_tasks),
+            "max_concurrent": task_queue.max_concurrent,
+            "completed_tasks": len(task_queue.task_results),
+        },
+        "system": {
+            "uptime": "N/A",  # Would need to track start time
+            "memory_usage": "N/A",  # Would need psutil
+        }
+    }
+
+
+@app.post("/cache/clear")
+async def clear_cache():
+    """Clear the NLP cache."""
+    nlp_cache.clear()
+    return {"status": "success", "message": "Cache cleared"}
+
+
+@app.get("/cache/stats")
+async def cache_stats():
+    """Get cache statistics."""
+    return {
+        "cache_size": len(nlp_cache.cache),
+        "max_size": nlp_cache.max_size,
+        "ttl_seconds": nlp_cache.ttl,
+    }
 
 
 # ----------------------------------------------------------------------------

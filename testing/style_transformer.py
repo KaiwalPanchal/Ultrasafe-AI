@@ -36,7 +36,7 @@ class StyleTransformer:
         self.llm = llm
         self.master_content_dir = Path("master_content")
         self.style_guides_dir = Path("style_guides")
-        self.output_dir = Path("generated_content")
+        self.output_dir = Path("generated_stylized_content")
         self.output_dir.mkdir(exist_ok=True)
         
         # Style transformation prompt
@@ -74,7 +74,7 @@ TRANSFORMED CONTENT:
         master_files = []
         
         if not self.master_content_dir.exists():
-            print(f"❌ Master content directory not found: {self.master_content_dir}")
+            print(f"Master content directory not found: {self.master_content_dir}")
             return []
         
         for file_path in self.master_content_dir.glob("*.txt"):
@@ -111,7 +111,7 @@ TRANSFORMED CONTENT:
         style_guides = []
         
         if not self.style_guides_dir.exists():
-            print(f"❌ Style guides directory not found: {self.style_guides_dir}")
+            print(f"Style guides directory not found: {self.style_guides_dir}")
             return []
         
         for file_path in self.style_guides_dir.glob("*.txt"):
@@ -267,37 +267,37 @@ STYLE GUIDE: {style_guide['file_path']}
         with open(output_path, 'w', encoding='utf-8') as file:
             file.write(metadata + transformed_content)
         
-        print(f"✅ Saved: {output_path}")
+        print(f"Saved: {output_path}")
     
     def transform_all_content(self):
         """Transform all master content with all style guides"""
-        print("🚀 Starting Style Transformation...")
+        print("Starting Style Transformation...")
         
         # Load master content and style guides
         master_contents = self.load_master_content_files()
         style_guides = self.load_style_guides()
         
-        print(f"📋 Loaded {len(master_contents)} master content files")
-        print(f"🎨 Loaded {len(style_guides)} style guides")
+        print(f"Loaded {len(master_contents)} master content files")
+        print(f"Loaded {len(style_guides)} style guides")
         
         if not master_contents or not style_guides:
-            print("❌ No content to transform. Ensure master content and style guides exist.")
+            print("No content to transform. Ensure master content and style guides exist.")
             return
         
         total_combinations = len(master_contents) * len(style_guides)
         current = 0
         
-        print(f"🎯 Total transformations to perform: {total_combinations}")
+        print(f"Total transformations to perform: {total_combinations}")
         
         # Transform each master content with each style guide
         for master_content in master_contents:
-            print(f"\n📖 Processing topic: {master_content['title']}")
+            print(f"\nProcessing topic: {master_content['title']}")
             
             for style_guide in style_guides:
                 current += 1
                 style_name = f"{style_guide['format']} - {style_guide['style']} - {style_guide['complexity']}"
                 
-                print(f"  🎨 [{current}/{total_combinations}] Applying: {style_name}")
+                print(f"  [{current}/{total_combinations}] Applying: {style_name}")
                 
                 # Check if already exists
                 topic_folder = self.output_dir / master_content['filename']
@@ -305,7 +305,7 @@ STYLE GUIDE: {style_guide['file_path']}
                 output_path = topic_folder / output_filename
                 
                 if output_path.exists():
-                    print(f"    ⏭️  Skipping (already exists)")
+                    print(f"    Skipping (already exists)")
                     continue
                 
                 try:
@@ -316,11 +316,11 @@ STYLE GUIDE: {style_guide['file_path']}
                     self.save_transformed_content(master_content, style_guide, transformed_content)
                     
                 except Exception as e:
-                    print(f"    ❌ Failed: {str(e)}")
+                    print(f"    Failed: {str(e)}")
                     continue
         
-        print(f"\n🎉 Style Transformation Complete!")
-        print(f"📁 Content saved in: {self.output_dir}")
+        print(f"\nStyle Transformation Complete!")
+        print(f"Content saved in: {self.output_dir}")
     
     def get_transformation_stats(self):
         """Get statistics about transformed content"""
@@ -330,7 +330,7 @@ STYLE GUIDE: {style_guide['file_path']}
         
         topic_folders = [f for f in self.output_dir.iterdir() if f.is_dir()]
         
-        print(f"\n📊 Transformation Statistics:")
+        print(f"\nTransformation Statistics:")
         print(f"  Topics processed: {len(topic_folders)}")
         
         total_files = 0
@@ -353,7 +353,7 @@ def main():
         transformer.get_transformation_stats()
         
     except Exception as e:
-        print(f"❌ Error: {str(e)}")
+        print(f"Error: {str(e)}")
 
 if __name__ == "__main__":
     main()

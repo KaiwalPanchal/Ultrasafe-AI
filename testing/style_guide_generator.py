@@ -164,9 +164,9 @@ class StyleGuideGenerator:
         try:
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write(content)
-            print(f"✓ Saved: {filename}")
+            print(f"Saved: {filename}")
         except Exception as e:
-            print(f"✗ Error saving {filename}: {str(e)}")
+            print(f"Error saving {filename}: {str(e)}")
 
     def generate_all_guides(self):
         """Generate all 120 style guides"""
@@ -191,12 +191,12 @@ class StyleGuideGenerator:
                     filename = self.generate_filename(format_name, style, complexity)
                     self.save_guide(content, filename)
 
-                    print(f"   → Saved as: {filename}")
+                    print(f"   -> Saved as: {filename}")
                     print()
 
         print("=" * 50)
-        print(f"✓ All {total_combinations} style guides generated successfully!")
-        print(f"✓ Files saved in: {self.output_dir.absolute()}")
+        print(f"All {total_combinations} style guides generated successfully!")
+        print(f"Files saved in: {self.output_dir.absolute()}")
 
     def generate_index_file(self):
         """Generate an index file listing all combinations"""

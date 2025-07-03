@@ -266,7 +266,7 @@ SOURCE STYLE GUIDE: {style_guide["file_path"]}
 
 def main():
     """Main function to orchestrate the parallel transformation process."""
-    print("🚀 Starting Parallel Style Transformer")
+    print("Starting Parallel Style Transformer")
     print(f"   - Max parallel workers: {MAX_WORKERS}")
     print(f"   - Input directory: {ORGANIZED_CONTENT_DIR}")
     print(f"   - Output directory: {OUTPUT_DIR}")
@@ -277,11 +277,11 @@ def main():
     style_guides = load_style_guides()
 
     if not topics or not style_guides:
-        print("❌ Aborting. Could not find topics or style guides.")
+        print("Aborting. Could not find topics or style guides.")
         return
 
-    print(f"\n✅ Found {len(topics)} source topics.")
-    print(f"✅ Found {len(style_guides)} style guides.")
+    print(f"\nFound {len(topics)} source topics.")
+    print(f"Found {len(style_guides)} style guides.")
 
     # 2. Create the full job list
     jobs_to_process = []
@@ -304,10 +304,10 @@ def main():
 
     total_jobs = len(jobs_to_process)
     if total_jobs == 0:
-        print("\n🎉 All transformations have already been completed. Nothing to do.")
+        print("\nAll transformations have already been completed. Nothing to do.")
         return
 
-    print(f"🎯 Total new transformations to perform: {total_jobs}")
+    print(f"Total new transformations to perform: {total_jobs}")
     print("-" * 50)
 
     # 3. Process jobs using a ThreadPoolExecutor
@@ -335,18 +335,18 @@ def main():
                 failure_count += 1
                 topic_title = result["topic"]["topic_title"]
                 style_name = result["style_guide"]["format"]
-                print(f"\n❌ FAILED: Topic '{topic_title}' with style '{style_name}'")
+                print(f"\nFAILED: Topic '{topic_title}' with style '{style_name}'")
                 print(f"   Error: {result['transformed_content']}")
 
     end_time = time.time()
 
     # 4. Print final summary
     print("\n" + "=" * 50)
-    print("🎉 Style Transformation Complete!")
+    print("Style Transformation Complete!")
     print(f"   - Total time: {end_time - start_time:.2f} seconds")
     print(f"   - Successful transformations: {success_count}")
     print(f"   - Failed transformations: {failure_count}")
-    print(f"📁 All content saved in: {OUTPUT_DIR.resolve()}")
+    print(f"All content saved in: {OUTPUT_DIR.resolve()}")
     print("=" * 50)
 
 
