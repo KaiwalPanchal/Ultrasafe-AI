@@ -21,6 +21,7 @@ A unified platform featuring:
   - [Webhook Notification Example](#webhook-notification-example)
   - [Performance \& Scaling](#performance--scaling)
   - [Example Usage (Python)](#example-usage-python)
+  - [Testing Task A (Validate Installation)](#testing-task-a-validate-installation)
 - [Task B: Content Transformation System](#task-b-content-transformation-system)
   - [Key Features](#key-features-1)
   - [Quick Start](#quick-start-1)
@@ -71,10 +72,33 @@ load_dotenv()
 - Caching, queuing, and horizontal scaling
 
 ## Quick Start
+
+### Prerequisites
 ```bash
-pip install fastapi uvicorn langchain-openai httpx langchain-core python-dotenv
-uvicorn Task_A:app --reload
+pip install -r "task a/requirements_task_a.txt"
 ```
+
+### Start the API Server
+```bash
+cd "task a"
+python run_task_a.py
+```
+This script will check dependencies, verify your `.env` file, and start the FastAPI server at http://localhost:8000.
+
+---
+
+## Testing Task A (Validate Installation)
+
+After starting the server, open a new terminal and run:
+```bash
+cd "task a"
+python test_task_a.py
+```
+This will run a comprehensive test suite against the running server, checking all endpoints, batch processing, caching, and more. You should see a summary of passed/failed tests at the end.
+
+If all tests pass, Task A is working correctly!
+
+---
 
 ## API Endpoints
 | Endpoint     | Method | Description                   |
