@@ -10,6 +10,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 import os
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 USF_EMBEDDING_URL = "https://api.us.inc/usf/v1/embed/embeddings"
 USF_EMBEDDING_MODEL = "usf1-embed"

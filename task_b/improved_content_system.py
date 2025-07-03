@@ -12,6 +12,9 @@ from dataclasses import dataclass, asdict
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.prompts import PromptTemplate
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configuration
 ULTRASAFE_API_KEY: str | None = os.getenv("ULTRASAFE_API_KEY")
@@ -205,7 +208,7 @@ MASTER CONTENT:
         topic = master_content.title.strip().lower().replace(' ', '_')
         
         # Import here to avoid circular imports
-        from .content_transformation_system import ContentTransformationSystem
+        from content_transformation_system import ContentTransformationSystem
         transformation_system = ContentTransformationSystem()
         
         # Use the transformation system, now passing topic for stricter RAG retrieval

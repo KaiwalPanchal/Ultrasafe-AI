@@ -6,9 +6,12 @@ Shows the Master Content → Human Verification → Style Transformation pattern
 import os
 import sys
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Add the task_b directory to the path
 sys.path.append(str(Path(__file__).parent))
+
+load_dotenv()
 
 def demo_master_content_generation():
     """Demo the master content generation step"""

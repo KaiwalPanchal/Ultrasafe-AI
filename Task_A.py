@@ -41,6 +41,7 @@ from typing import List, Union, Optional, Dict, Any
 from fastapi import FastAPI, BackgroundTasks, HTTPException
 from pydantic import BaseModel, Field
 import httpx
+from dotenv import load_dotenv
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -49,6 +50,8 @@ from langchain_core.output_parsers import StrOutputParser
 # ----------------------------------------------------------------------------
 # LLM / Chain factory helpers
 # ----------------------------------------------------------------------------
+
+load_dotenv()
 
 ULTRASAFE_API_KEY: str | None = os.getenv("ULTRASAFE_API_KEY")
 ULTRASAFE_API_BASE: str | None = os.getenv(

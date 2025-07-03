@@ -7,12 +7,15 @@ import os
 import sys
 from pathlib import Path
 from typing import Dict, List, Any
+from dotenv import load_dotenv
 
 # Add the task_b directory to the path
 sys.path.append(str(Path(__file__).parent))
 
 from content_transformation_system import ContentTransformationSystem
 from langchain_core.messages import HumanMessage
+
+load_dotenv()
 
 class InteractiveCLI:
     """Interactive CLI for content transformation"""
